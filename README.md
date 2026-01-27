@@ -2,33 +2,33 @@
 
 A comprehensive web platform designed to connect community members with essential local resources, support services, and assistance programs.
 
-## 🎯 Project Vision
+## Project Vision
 
 The Community Resource Hub aims to bridge the gap between people in need and the organizations that can help them. We believe everyone deserves easy access to support services, and our platform makes that connection simple and efficient.
 
-## 🌟 Key Features
+## Key Features
 
 ### 🔍 Resource Discovery
 - **Comprehensive Directory**: Search through hundreds of local resources and services
 - **Smart Categorization**: Resources organized by categories like Healthcare, Housing, Employment, and more
 - **Advanced Filtering**: Filter by location, eligibility requirements, languages spoken, and more
 
-### 📝 Resource Submission
+### Resource Submission
 - **Community-Driven**: Anyone can submit new resources to help grow the directory
 - **Detailed Information**: Capture comprehensive details including contact info, hours, and eligibility requirements
 - **Quality Assurance**: All submissions go through a review process to ensure accuracy
 
-### 🎨 User Experience
+### User Experience
 - **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
 - **Intuitive Navigation**: Easy-to-use interface with clear categorization
 - **Accessibility**: Built with accessibility in mind to serve all community members
 
-### 🤝 Community Focus
+### Community Focus
 - **Local First**: Prioritizes resources and organizations within the community
 - **Multilingual Support**: Resources tagged with languages spoken to serve diverse populations
 - **Regular Updates**: Keeps information current with the latest available services
 
-## 🏗️ Technical Architecture
+## Technical Architecture
 
 ### Frontend Stack
 - **React 19**: Modern, component-based UI framework
@@ -46,7 +46,7 @@ The Community Resource Hub aims to bridge the gap between people in need and the
 - **GitHub Pages**: Static site hosting for reliable performance
 - **Automatic Deployments**: Every push to main branch triggers a new deployment
 
-## 🎯 Project Goals
+## Project Goals
 
 ### Short-Term Goals
 - [x] Launch basic platform with core functionality
@@ -67,7 +67,7 @@ The Community Resource Hub aims to bridge the gap between people in need and the
 - [ ] Create volunteer coordination system
 - [ ] Develop partnerships with local government and organizations
 
-## 🌍 Impact Goals
+## Impact Goals
 
 ### Social Impact
 - **Increase Access**: Make essential services more accessible to those who need them most
@@ -79,7 +79,7 @@ The Community Resource Hub aims to bridge the gap between people in need and the
 - **For Organizations**: Increased visibility and reach for service providers
 - **For Community**: Stronger support network and improved resource utilization
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Node.js 18+ installed
@@ -109,11 +109,11 @@ The Community Resource Hub aims to bridge the gap between people in need and the
 npm run build
 ```
 
-## 📱 Live Demo
+## Live Demo
 
 Visit the live site: [https://clouduser79.github.io/tsa-webmaster-2026](https://clouduser79.github.io/tsa-webmaster-2026)
 
-## 🤝 How to Contribute
+## How to Contribute
 
 We welcome contributions from community members! Here's how you can help:
 
@@ -133,14 +133,14 @@ We welcome contributions from community members! Here's how you can help:
 - Bug reports and feature suggestions can be submitted via GitHub Issues
 - Please provide detailed descriptions and steps to reproduce any bugs
 
-## 📊 Project Metrics
+## Project Metrics
 
 - **Resources Listed**: Continuously growing
 - **Categories Covered**: 10+ major service categories
 - **Community Contributors**: Open for community submissions
 - **Active Users**: Tracking engagement and usage patterns
 
-## 🗺️ Roadmap
+## Roadmap
 
 ### Phase 1: Foundation (Current)
 - ✅ Basic resource directory
@@ -149,29 +149,29 @@ We welcome contributions from community members! Here's how you can help:
 - ✅ GitHub Pages deployment
 
 ### Phase 2: Enhancement (Next 3 months)
-- 🔄 Advanced search and filtering
-- 🔄 User accounts and profiles
-- 🔄 Resource reviews and ratings
-- 🔄 Mobile app development
+- Advanced search and filtering
+- User accounts and profiles
+- Resource reviews and ratings
+- Mobile app development
 
 ### Phase 3: Expansion (Next 6 months)
-- 📋 Multi-community support
-- 📋 Real-time availability tracking
-- 📋 Integration with local services
-- 📋 Analytics and insights dashboard
+- Multi-community support
+- Real-time availability tracking
+- Integration with local services
+- Analytics and insights dashboard
 
-## 📞 Contact
+## Contact
 
 For questions, suggestions, or support:
 - **Project Maintainer**: clouduser79
 - **Email**: swastikmankotia9@gmail.com
 - **GitHub Issues**: [Create an issue](https://github.com/clouduser79/tsa-webmaster-2026/issues)
 
-## 📄 License
+## License
 
 This project is open source and available under the [MIT License](LICENSE).
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Community members who contribute resource information
 - Local organizations providing essential services
