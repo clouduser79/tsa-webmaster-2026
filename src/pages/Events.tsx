@@ -124,7 +124,7 @@ const Events = () => {
     }
   ];
 
-  const categories = ['all', 'Resource Fair', 'Workshop', 'Food Distribution', 'Job Fair', 'Health'];
+  const categories = ['all', 'Resource Fair', 'Workshop', 'Food Distribution', 'Job Fair', 'Health']; 
 
   const filteredEvents = events.filter(event => {
     const matchesSearch = event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
