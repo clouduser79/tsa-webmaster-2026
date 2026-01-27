@@ -10,12 +10,14 @@ export default function Navbar() {
   return (
     <nav className="bg-blue-600 text-white shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex">
+        <div className="relative flex h-16">
+          <div className="flex items-center">
             <div className="flex-shrink-0 flex items-center">
-              <Link to="/" className="text-xl font-bold">Community Resource Hub</Link>
+              <Link to="/" className="text-xl font-bold text-white">Community Resource Hub</Link>
             </div>
-            <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+          </div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="hidden sm:flex sm:items-center sm:space-x-8">
               <Link to="/" className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-white hover:border-white">
                 <HomeIcon className="h-5 w-5 mr-1" />
                 Home
@@ -38,4 +40,4 @@ export default function Navbar() {
       </div>
     </nav>
   );
-}   
+}
