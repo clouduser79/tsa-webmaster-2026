@@ -176,7 +176,7 @@ const Home = () => {
                 time: '10:00 AM - 3:00 PM',
                 location: 'Sheraton Imperial Hotel, Durham, NC',
                 category: 'Job Fair',
-                image: '/events/job-fair.png'
+                image: '/tsa-webmaster-2026/events/job-fair.svg'
               },
               {
                 title: 'Food Bank Mobile Distribution',
@@ -184,7 +184,7 @@ const Home = () => {
                 time: '9:00 AM - 12:00 PM',
                 location: 'Various locations across NC',
                 category: 'Food Distribution',
-                image: '/events/food-distribution.png'
+                image: '/tsa-webmaster-2026/events/food-distribution.svg'
               },
               {
                 title: 'NAMI Family Support Group',
@@ -192,7 +192,7 @@ const Home = () => {
                 time: '6:00 PM - 7:30 PM',
                 location: 'NAMI Johnston County, Smithfield, NC',
                 category: 'Health',
-                image: '/events/health-wellness.png'
+                image: '/tsa-webmaster-2026/events/health-wellness.svg'
               }
             ].map((event) => (
               <div key={event.title} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">

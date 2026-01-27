@@ -43,7 +43,7 @@ const Events = () => {
       organizer: 'NC Office of Human Resources',
       attendees: 150,
       maxAttendees: 500,
-      image: '/events/job-fair.png',
+      image: '/tsa-webmaster-2026/events/job-fair.svg',
       isVirtual: false,
       registrationRequired: false
     },
@@ -58,7 +58,7 @@ const Events = () => {
       organizer: 'Food Bank of Central & Eastern NC',
       attendees: 200,
       maxAttendees: 500,
-      image: '/events/food-distribution.png',
+      image: '/tsa-webmaster-2026/events/food-distribution.svg',
       isVirtual: false,
       registrationRequired: false
     },
@@ -73,7 +73,7 @@ const Events = () => {
       organizer: 'NAMI North Carolina',
       attendees: 15,
       maxAttendees: 30,
-      image: '/events/health-wellness.png',
+      image: '/tsa-webmaster-2026/events/health-wellness.svg',
       isVirtual: false,
       registrationRequired: false
     },
@@ -88,7 +88,7 @@ const Events = () => {
       organizer: 'NAMI North Carolina',
       attendees: 12,
       maxAttendees: 25,
-      image: '/events/health-wellness.png',
+      image: '/tsa-webmaster-2026/events/health-wellness.svg',
       isVirtual: false,
       registrationRequired: false
     },
@@ -103,7 +103,7 @@ const Events = () => {
       organizer: 'Community Resource Hub',
       attendees: 45,
       maxAttendees: 100,
-      image: '/events/resource-fair.png',
+      image: '/tsa-webmaster-2026/events/resource-fair.svg',
       isVirtual: false,
       registrationRequired: true
     },
@@ -118,7 +118,7 @@ const Events = () => {
       organizer: 'NAMI North Carolina',
       attendees: 25,
       maxAttendees: 50,
-      image: '/events/workshop.png',
+      image: '/tsa-webmaster-2026/events/workshop.svg',
       isVirtual: true,
       registrationRequired: true
     }
