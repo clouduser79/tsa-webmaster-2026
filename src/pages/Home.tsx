@@ -23,7 +23,7 @@ const ResourceCard = ({ title, description, category, icon }: ResourceCardProps)
         <div className="p-3 rounded-full bg-blue-100 text-blue-600">
           {icon}
         </div>
-        <h3 className="ml-3 text-lg font-medium text-white-900">{title}</h3>
+        <h3 className="ml-3 text-lg font-medium text-gray-900">{title}</h3>
       </div>
       <p className="text-gray-600 mb-4">{description}</p>
       <div className="flex justify-between items-center">

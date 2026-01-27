@@ -6,27 +6,6 @@ import {
   ArrowRightIcon
 } from '@heroicons/react/24/outline';
 
-const teamMembers = [
-  {
-    name: 'Alex Johnson',
-    role: 'Project Lead',
-    bio: 'Passionate about connecting communities with the resources they need to thrive.',
-    image: 'https://randomuser.me/api/portraits/women/44.jpg'
-  },
-  {
-    name: 'Jamie Smith',
-    role: 'UX Designer',
-    bio: 'Focused on creating intuitive and accessible experiences for all users.',
-    image: 'https://randomuser.me/api/portraits/men/32.jpg'
-  },
-  {
-    name: 'Taylor Wilson',
-    role: 'Developer',
-    bio: 'Building the technical foundation to make community resources easily discoverable.',
-    image: 'https://randomuser.me/api/portraits/women/68.jpg'
-  }
-];
-
 const stats = [
   { id: 1, name: 'Resources Listed', value: '250+' },
   { id: 2, name: 'Community Partners', value: '45+' },
@@ -56,7 +35,7 @@ export default function About() {
               </p>
             </div>
           </div>
-          <div className="bg-white py-16 px-4 sm:px-6 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12">
+          <div className="bg-white py-20 px-4 sm:px-6 lg:col-span-3 lg:py-8 lg:px-8 xl:pl-12">
             <div className="max-w-lg mx-auto lg:max-w-none">
               <div className="relative aspect-w-16 aspect-h-9 lg:aspect-none">
                 <img
@@ -152,44 +131,6 @@ export default function About() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Team Section */}
-      <div className="bg-white">
-        <div className="max-w-7xl mx-auto py-12 px-4 text-center sm:px-6 lg:px-8 lg:py-24">
-          <div className="space-y-12">
-            <div className="space-y-5 sm:space-y-4 md:max-w-xl lg:max-w-3xl xl:max-w-none mx-auto">
-              <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Our Team</h2>
-              <p className="text-xl text-gray-500">
-                Meet the dedicated individuals working to connect our community with vital resources.
-              </p>
-            </div>
-            <ul className="space-y-12 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:grid-cols-3 lg:gap-x-8">
-              {teamMembers.map((person) => (
-                <li key={person.name}>
-                  <div className="space-y-4">
-                    <div className="aspect-w-3 aspect-h-2">
-                      <img
-                        className="object-cover shadow-lg rounded-lg mx-auto h-48 w-48"
-                        src={person.image}
-                        alt={person.name}
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <div className="text-lg leading-6 font-medium space-y-1">
-                        <h3>{person.name}</h3>
-                        <p className="text-blue-600">{person.role}</p>
-                      </div>
-                      <div className="text-base text-gray-500">
-                        <p>{person.bio}</p>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </div>
