@@ -98,9 +98,9 @@ const Home = () => {
                   <h3 className="text-lg font-medium text-gray-900 mb-4">Upcoming Community Events</h3>
                   <div className="space-y-4">
                     {[
-                      { title: 'Food Distribution Day', date: 'Feb 15, 2024', location: 'Community Center' },
-                      { title: 'Job Fair', date: 'Mar 1, 2024', location: 'City Hall' },
-                      { title: 'Health & Wellness Workshop', date: 'Mar 10, 2024', location: 'Public Library' },
+                      { title: 'NC State Career Expo 2024', date: 'Sep 9, 2024', location: 'Durham, NC' },
+                      { title: 'Food Bank Mobile Distribution', date: 'Feb 15, 2024', location: 'Across NC' },
+                      { title: 'NAMI Family Support Group', date: 'Feb 20, 2024', location: 'Smithfield, NC' },
                     ].map((event, index) => (
                       <div key={index} className="flex items-start">
                         <div className="flex-shrink-0 bg-blue-100 rounded-md p-2">
@@ -152,6 +152,86 @@ const Home = () => {
                 icon={resource.icon}
               />
             ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Featured Events */}
+      <div className="bg-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="lg:text-center mb-8">
+            <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+              Upcoming Events
+            </h2>
+            <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+              Join community workshops, support groups, and resource fairs
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                title: 'NC State Career Expo 2024',
+                date: 'Sep 9, 2024',
+                time: '10:00 AM - 3:00 PM',
+                location: 'Sheraton Imperial Hotel, Durham, NC',
+                category: 'Job Fair',
+                image: '/events/job-fair.svg'
+              },
+              {
+                title: 'Food Bank Mobile Distribution',
+                date: 'Feb 15, 2024',
+                time: '9:00 AM - 12:00 PM',
+                location: 'Various locations across NC',
+                category: 'Food Distribution',
+                image: '/events/food-distribution.svg'
+              },
+              {
+                title: 'NAMI Family Support Group',
+                date: 'Feb 20, 2024',
+                time: '6:00 PM - 7:30 PM',
+                location: 'NAMI Johnston County, Smithfield, NC',
+                category: 'Health',
+                image: '/events/health-wellness.svg'
+              }
+            ].map((event) => (
+              <div key={event.title} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                <div className="h-32">
+                  <img
+                    src={event.image}
+                    alt={event.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">
+                      {event.category}
+                    </span>
+                    <span className="text-xs text-gray-500">{event.date}</span>
+                  </div>
+                  <h3 className="text-lg font-medium text-gray-900 mb-1">{event.title}</h3>
+                  <p className="text-sm text-gray-600 mb-2">{event.time}</p>
+                  <p className="text-sm text-gray-500 mb-3">{event.location}</p>
+                  <Link
+                    to="/events"
+                    className="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center"
+                  >
+                    View all events <ArrowRightIcon className="ml-1 h-4 w-4" />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-8">
+            <Link
+              to="/events"
+              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+            >
+              View All Events
+              <ArrowRightIcon className="ml-2 h-5 w-5" />
+            </Link>
           </div>
         </div>
       </div>

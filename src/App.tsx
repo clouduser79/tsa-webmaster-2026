@@ -4,6 +4,7 @@ import About from './pages/About';
 import Home from './pages/Home.tsx';
 import Contact from './pages/Contact';
 import Resources from './pages/Resources';
+import Events from './pages/Events';
 import AddResource from './components/AddResource';
 import Navbar from './components/Navbar';
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/resources" element={<Resources />} />
+        <Route path="/events" element={<Events />} />
         <Route path="/add-resource" element={<AddResource />} />
       </Routes>
       </div>

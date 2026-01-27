@@ -3,7 +3,7 @@ import {
   HomeIcon, 
   InformationCircleIcon, 
   PlusCircleIcon, 
-  MagnifyingGlassIcon 
+  MagnifyingGlassIcon
 } from '@heroicons/react/24/outline';
 
 export default function Navbar() {
