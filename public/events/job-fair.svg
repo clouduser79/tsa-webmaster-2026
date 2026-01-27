@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
-  <rect width="800" height="400" fill="#8B5CF6"/>
+  <defs>
+    <linearGradient id="careerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6D28D9;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" fill="url(#careerGrad)"/>
   <rect x="50" y="50" width="700" height="300" fill="#6D28D9" rx="8"/>
+  
+  <!-- Career icons -->
   <circle cx="150" cy="200" r="40" fill="#A78BFA"/>
+  <rect x="135" y="185" width="30" height="30" fill="#6D28D9" rx="2"/>
+  <circle cx="150" cy="195" r="8" fill="#A78BFA"/>
+  
   <rect x="220" y="140" width="480" height="120" fill="#7C3AED" rx="4"/>
-  <text x="400" y="200" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Job Fair</text>
-  <text x="400" y="230" text-anchor="middle" fill="#EDE9FE" font-family="Arial, sans-serif" font-size="16">Connect with employers</text>
+  <text x="400" y="190" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="24" font-weight="bold">NC State Career Expo</text>
+  <text x="400" y="220" text-anchor="middle" fill="#EDE9FE" font-family="Arial, sans-serif" font-size="16">Durham, NC • Sept 9, 2024</text>
 </svg>
