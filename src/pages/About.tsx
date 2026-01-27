@@ -1,17 +1,9 @@
 import { Link } from 'react-router-dom';
 import { 
   LightBulbIcon,
-  ChartBarIcon,
   HeartIcon,
   ArrowRightIcon
 } from '@heroicons/react/24/outline';
-
-const stats = [
-  { id: 1, name: 'Resources Listed', value: '250+' },
-  { id: 2, name: 'Community Partners', value: '45+' },
-  { id: 3, name: 'Active Users', value: '5,000+' },
-  { id: 4, name: 'Areas Served', value: '12' }
-];
 
 export default function About() {
   return (
@@ -45,27 +37,6 @@ export default function About() {
                 />
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Stats Section */}
-      <div className="bg-white">
-        <div className="max-w-7xl mx-auto py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
-          <div className="mt-10">
-            <dl className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10 lg:grid-cols-4">
-              {stats.map((stat) => (
-                <div key={stat.id} className="relative">
-                  <dt>
-                    <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
-                      <ChartBarIcon className="h-6 w-6" aria-hidden="true" />
-                    </div>
-                    <p className="ml-16 text-lg leading-6 font-medium text-gray-900">{stat.name}</p>
-                  </dt>
-                  <dd className="mt-2 ml-16 text-3xl font-extrabold text-blue-600">{stat.value}</dd>
-                </div>
-              ))}
-            </dl>
           </div>
         </div>
       </div>

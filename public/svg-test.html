@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Test</title>
+</head>
+<body>
+    <h1>SVG Image Test</h1>
+    
+    <h2>Job Fair</h2>
+    <img src="/events/job-fair.svg" alt="Job Fair" style="max-width: 400px; border: 1px solid #ccc;">
+    
+    <h2>Food Distribution</h2>
+    <img src="/events/food-distribution.svg" alt="Food Distribution" style="max-width: 400px; border: 1px solid #ccc;">
+    
+    <h2>Health & Wellness</h2>
+    <img src="/events/health-wellness.svg" alt="Health & Wellness" style="max-width: 400px; border: 1px solid #ccc;">
+    
+    <h2>Resource Fair</h2>
+    <img src="/events/resource-fair.svg" alt="Resource Fair" style="max-width: 400px; border: 1px solid #ccc;">
+    
+    <h2>Workshop</h2>
+    <img src="/events/workshop.svg" alt="Workshop" style="max-width: 400px; border: 1px solid #ccc;">
+    
+    <script>
+        // Test if images load
+        document.querySelectorAll('img').forEach((img, index) => {
+            img.onload = () => {
+                console.log(`Image ${index + 1} loaded successfully`);
+            };
+            img.onerror = () => {
+                console.error(`Image ${index + 1} failed to load`);
+                img.style.border = '2px solid red';
+            };
+        });
+    </script>
+</body>
+</html>
