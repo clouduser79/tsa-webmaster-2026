@@ -8,7 +8,7 @@ The Community Resource Hub aims to bridge the gap between people in need and the
 
 ## Key Features
 
-### 🔍 Resource Discovery
+### Resource Discovery
 - **Comprehensive Directory**: Search through hundreds of local resources and services
 - **Smart Categorization**: Resources organized by categories like Healthcare, Housing, Employment, and more
 - **Advanced Filtering**: Filter by location, eligibility requirements, languages spoken, and more
@@ -53,12 +53,6 @@ The Community Resource Hub aims to bridge the gap between people in need and the
 - [x] Implement resource browsing and search
 - [x] Create resource submission system
 - [x] Deploy to GitHub Pages for public access
-
-### Medium-Term Goals
-- [ ] Implement advanced search and filtering capabilities
-- [ ] Add user accounts and saved resources
-- [ ] Integrate mapping functionality for resource locations
-- [ ] Develop mobile companion app
 
 ### Long-Term Goals
 - [ ] Expand to multiple communities/regions
@@ -148,13 +142,13 @@ We welcome contributions from community members! Here's how you can help:
 - ✅ Responsive design
 - ✅ GitHub Pages deployment
 
-### Phase 2: Enhancement (Next 3 months)
+### Phase 2: Enhancement
 - Advanced search and filtering
 - User accounts and profiles
 - Resource reviews and ratings
 - Mobile app development
 
-### Phase 3: Expansion (Next 6 months)
+### Phase 3: Expansion
 - Multi-community support
 - Real-time availability tracking
 - Integration with local services
@@ -177,7 +171,3 @@ This project is open source and available under the [MIT License](LICENSE).
 - Local organizations providing essential services
 - Open source community for the tools and frameworks that make this project possible
 - Everyone who believes in the power of community support
-
----
-
-**Together, we're building stronger, more connected communities where everyone has access to the support they need.**
