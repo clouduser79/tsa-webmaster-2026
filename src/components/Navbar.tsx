@@ -5,6 +5,7 @@ import {
   PlusCircleIcon, 
   MagnifyingGlassIcon
 } from '@heroicons/react/24/outline';
+import communityLogo from '../assets/community-logo.svg';
 
 export default function Navbar() {
   return (
@@ -13,7 +14,10 @@ export default function Navbar() {
         <div className="relative flex h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0 flex items-center">
-              <Link to="/" className="text-xl font-bold text-white">Community Resource Hub</Link>
+              <Link to="/" className="flex items-center text-xl font-bold text-white">
+                <img src={communityLogo} alt="Community Hub Logo" className="h-8 w-8 mr-2" />
+                Community Resource Hub
+              </Link>
             </div>
           </div>
           <div className="absolute inset-0 flex items-center justify-center">
