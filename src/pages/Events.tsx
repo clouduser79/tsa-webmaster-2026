@@ -1,128 +1,20 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useMemo } from 'react';
 import {
   CalendarDaysIcon,
   MapPinIcon,
   ClockIcon,
   UserGroupIcon,
   ArrowRightIcon,
-  PlusCircleIcon,
   MagnifyingGlassIcon,
   FunnelIcon
 } from '@heroicons/react/24/outline';
-
-interface Event {
-  id: number;
-  title: string;
-  description: string;
-  date: string;
-  time: string;
-  location: string;
-  category: string;
-  organizer: string;
-  attendees: number;
-  maxAttendees: number;
-  image: string;
-  isVirtual: boolean;
-  registrationRequired: boolean;
-}
+import { getFilteredEvents, formatDate } from '../data/eventsData';
 
 const Events = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
 
-  const events: Event[] = [
-    {
-      id: 1,
-      title: 'NC State Career Expo 2024',
-      description: 'Connect with North Carolina state agencies and universities. Explore career opportunities in state government, entry-level positions, and internships.',
-      date: '2024-09-09',
-      time: '10:00 AM - 3:00 PM',
-      location: 'Sheraton Imperial Hotel, Durham, NC',
-      category: 'Job Fair',
-      organizer: 'NC Office of Human Resources',
-      attendees: 150,
-      maxAttendees: 500,
-      image: '/tsa-webmaster-2026/events/job-fair.svg',
-      isVirtual: false,
-      registrationRequired: false
-    },
-    {
-      id: 2,
-      title: 'Food Bank Mobile Distribution',
-      description: 'Monthly mobile food distribution for families in need. Fresh produce, canned goods, and essential items available for central and eastern NC residents.',
-      date: '2024-02-15',
-      time: '9:00 AM - 12:00 PM',
-      location: 'Various locations across NC',
-      category: 'Food Distribution',
-      organizer: 'Food Bank of Central & Eastern NC',
-      attendees: 200,
-      maxAttendees: 500,
-      image: '/tsa-webmaster-2026/events/food-distribution.svg',
-      isVirtual: false,
-      registrationRequired: false
-    },
-    {
-      id: 3,
-      title: 'NAMI Family Support Group',
-      description: 'Free mental health support group for families and caregivers of individuals with mental illness. Share experiences and find community resources.',
-      date: '2024-02-20',
-      time: '6:00 PM - 7:30 PM',
-      location: 'NAMI Johnston County, Smithfield, NC',
-      category: 'Health',
-      organizer: 'NAMI North Carolina',
-      attendees: 15,
-      maxAttendees: 30,
-      image: '/tsa-webmaster-2026/events/health-wellness.svg',
-      isVirtual: false,
-      registrationRequired: false
-    },
-    {
-      id: 4,
-      title: 'Connection Recovery Support Group',
-      description: 'Peer-led support group for adults living with mental illness. Safe space to share experiences and recovery strategies.',
-      date: '2024-02-22',
-      time: '5:30 PM - 7:00 PM',
-      location: 'NAMI High Country, Boone, NC',
-      category: 'Health',
-      organizer: 'NAMI North Carolina',
-      attendees: 12,
-      maxAttendees: 25,
-      image: '/tsa-webmaster-2026/events/health-wellness.svg',
-      isVirtual: false,
-      registrationRequired: false
-    },
-    {
-      id: 5,
-      title: 'Community Resource Workshop',
-      description: 'Learn about SNAP benefits, housing assistance, healthcare resources, and other support programs available to North Carolina residents.',
-      date: '2024-03-01',
-      time: '10:00 AM - 12:00 PM',
-      location: 'Raleigh Community Center, Raleigh, NC',
-      category: 'Resource Fair',
-      organizer: 'Community Resource Hub',
-      attendees: 45,
-      maxAttendees: 100,
-      image: '/tsa-webmaster-2026/events/resource-fair.svg',
-      isVirtual: false,
-      registrationRequired: true
-    },
-    {
-      id: 6,
-      title: 'Psychiatric Advanced Directive Training',
-      description: 'Free training on creating psychiatric advanced directives. Learn how to plan ahead for mental health treatment preferences.',
-      date: '2024-03-10',
-      time: '2:00 PM - 4:00 PM',
-      location: 'Online - Zoom',
-      category: 'Workshop',
-      organizer: 'NAMI North Carolina',
-      attendees: 25,
-      maxAttendees: 50,
-      image: '/tsa-webmaster-2026/events/workshop.svg',
-      isVirtual: true,
-      registrationRequired: true
-    }
-  ];
+  const events = useMemo(() => getFilteredEvents(), []);
 
   const categories = ['all', 'Resource Fair', 'Workshop', 'Food Distribution', 'Job Fair', 'Health']; 
 
@@ -143,16 +35,6 @@ const Events = () => {
       'Health': 'bg-red-100 text-red-800'
     };
     return colors[category] || 'bg-gray-100 text-gray-800';
-  };
-
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
-      weekday: 'long', 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
-    });
   };
 
   return (
@@ -201,13 +83,6 @@ const Events = () => {
                 ))}
               </select>
             </div>
-            <Link
-              to="/add-event"
-              className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              <PlusCircleIcon className="h-5 w-5 mr-2" />
-              Add Event
-            </Link>
           </div>
         </div>
       </div>
@@ -263,17 +138,17 @@ const Events = () => {
                   <span className="text-sm text-gray-500">
                     Organized by {event.organizer}
                   </span>
-                  {event.registrationRequired && (
-                    <span className="text-xs text-blue-600 font-medium">
-                      Registration Required
-                    </span>
-                  )}
                 </div>
 
-                <button className="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center">
+                <a
+                  href={event.registrationLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center"
+                >
                   Register Now
                   <ArrowRightIcon className="ml-2 h-4 w-4" />
-                </button>
+                </a>
               </div>
             </div>
           ))}

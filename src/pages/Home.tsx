@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   ArrowRightIcon, 
@@ -8,6 +8,7 @@ import {
   MagnifyingGlassIcon,
   PlusCircleIcon
 } from '@heroicons/react/24/outline';
+import { getFilteredEvents, formatDateShort, type Event } from '../data/eventsData';
 
 type ResourceCardProps = {
   title: string;
@@ -37,6 +38,8 @@ const ResourceCard = ({ title, description, category, icon }: ResourceCardProps)
 );
 
 const Home = () => {
+  const events = useMemo(() => getFilteredEvents(), []);
+
   const featuredResources = [
     {
       title: 'Food Bank Network',
@@ -93,30 +96,32 @@ const Home = () => {
               </div>
             </div>
             <div className="mt-12 lg:mt-0">
-              <div className="bg-white rounded-lg shadow-xl overflow-hidden">
+              <div className="bg-white rounded-lg shadow-xl overflow-hidden max-w-md mx-auto lg:mx-0">
                 <div className="p-6">
                   <h3 className="text-lg font-medium text-gray-900 mb-4">Upcoming Community Events</h3>
                   <div className="space-y-4">
-                    {[
-                      { title: 'NC State Career Expo 2024', date: 'Sep 9, 2024', location: 'Durham, NC' },
-                      { title: 'Food Bank Mobile Distribution', date: 'Feb 15, 2024', location: 'Across NC' },
-                      { title: 'NAMI Family Support Group', date: 'Feb 20, 2024', location: 'Smithfield, NC' },
-                    ].map((event, index) => (
-                      <div key={index} className="flex items-start">
-                        <div className="flex-shrink-0 bg-blue-100 rounded-md p-2">
-                          <CalendarDaysIcon className="h-5 w-5 text-blue-600" />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-sm font-medium text-gray-900">{event.title}</p>
-                          <div className="flex items-center text-sm text-gray-500">
-                            <CalendarDaysIcon className="flex-shrink-0 mr-1.5 h-4 w-4 text-gray-400" />
-                            {event.date}
-                            <MapPinIcon className="ml-3 flex-shrink-0 mr-1.5 h-4 w-4 text-gray-400" />
-                            {event.location}
+                    {events.slice(0, 3).map((event) => {
+                      const locationParts = event.location.split(',');
+                      const shortLocation = locationParts.length > 1 
+                        ? locationParts[locationParts.length - 1].trim()
+                        : event.location;
+                      return (
+                        <div key={event.id} className="flex items-start">
+                          <div className="flex-shrink-0 bg-blue-100 rounded-md p-2">
+                            <CalendarDaysIcon className="h-5 w-5 text-blue-600" />
+                          </div>
+                          <div className="ml-4">
+                            <p className="text-sm font-medium text-gray-900">{event.title}</p>
+                            <div className="flex items-center text-sm text-gray-500">
+                              <CalendarDaysIcon className="flex-shrink-0 mr-1.5 h-4 w-4 text-gray-400" />
+                              {formatDateShort(event.date)}
+                              <MapPinIcon className="ml-3 flex-shrink-0 mr-1.5 h-4 w-4 text-gray-400" />
+                              {shortLocation}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                   <div className="mt-6">
                     <Link to="/events" className="text-sm font-medium text-blue-600 hover:text-blue-500">
@@ -169,59 +174,49 @@ const Home = () => {
           </div>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                title: 'NC State Career Expo 2024',
-                date: 'Sep 9, 2024',
-                time: '10:00 AM - 3:00 PM',
-                location: 'Sheraton Imperial Hotel, Durham, NC',
-                category: 'Job Fair',
-                image: '/tsa-webmaster-2026/events/job-fair.svg'
-              },
-              {
-                title: 'Food Bank Mobile Distribution',
-                date: 'Feb 15, 2024',
-                time: '9:00 AM - 12:00 PM',
-                location: 'Various locations across NC',
-                category: 'Food Distribution',
-                image: '/tsa-webmaster-2026/events/food-distribution.svg'
-              },
-              {
-                title: 'NAMI Family Support Group',
-                date: 'Feb 20, 2024',
-                time: '6:00 PM - 7:30 PM',
-                location: 'NAMI Johnston County, Smithfield, NC',
-                category: 'Health',
-                image: '/tsa-webmaster-2026/events/health-wellness.svg'
-              }
-            ].map((event) => (
-              <div key={event.title} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="h-32">
-                  <img
-                    src={event.image}
-                    alt={event.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">
-                      {event.category}
-                    </span>
-                    <span className="text-xs text-gray-500">{event.date}</span>
+            {events.slice(0, 3).map((event) => {
+              const getCategoryColor = (category: string) => {
+                const colors: { [key: string]: string } = {
+                  'Resource Fair': 'bg-blue-100 text-blue-800',
+                  'Workshop': 'bg-green-100 text-green-800',
+                  'Food Distribution': 'bg-orange-100 text-orange-800',
+                  'Job Fair': 'bg-purple-100 text-purple-800',
+                  'Health': 'bg-red-100 text-red-800'
+                };
+                return colors[category] || 'bg-gray-100 text-gray-800';
+              };
+
+              return (
+                <div key={event.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                  <div className="h-32">
+                    <img
+                      src={event.image}
+                      alt={event.title}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-1">{event.title}</h3>
-                  <p className="text-sm text-gray-600 mb-2">{event.time}</p>
-                  <p className="text-sm text-gray-500 mb-3">{event.location}</p>
-                  <Link
-                    to="/events"
-                    className="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center"
-                  >
-                    View all events <ArrowRightIcon className="ml-1 h-4 w-4" />
-                  </Link>
+                  <div className="p-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className={`px-2 py-1 text-xs font-medium rounded-full ${getCategoryColor(event.category)}`}>
+                        {event.category}
+                      </span>
+                      <span className="text-xs text-gray-500">{formatDateShort(event.date)}</span>
+                    </div>
+                    <h3 className="text-lg font-medium text-gray-900 mb-1">{event.title}</h3>
+                    <p className="text-sm text-gray-600 mb-2">{event.time}</p>
+                    <p className="text-sm text-gray-500 mb-3">{event.location}</p>
+                    <a
+                      href={event.registrationLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center"
+                    >
+                      Register Now <ArrowRightIcon className="ml-1 h-4 w-4" />
+                    </a>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           <div className="text-center mt-8">
