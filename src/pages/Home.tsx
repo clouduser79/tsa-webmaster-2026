@@ -8,7 +8,7 @@ import {
   MagnifyingGlassIcon,
   PlusCircleIcon
 } from '@heroicons/react/24/outline';
-import { getFilteredEvents, formatDateShort, type Event } from '../data/eventsData';
+import { getFilteredEvents, formatDateShort } from '../data/eventsData';
 
 type ResourceCardProps = {
   title: string;
