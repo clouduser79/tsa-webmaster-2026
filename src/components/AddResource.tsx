@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { CheckCircleIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline';
+import { useNavigate } from 'react-router-dom';
+import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
+
 type FormData = {
   organizationName: string;
   category: string;
@@ -49,15 +51,14 @@ const languages = [
 ];
 
 export default function AddResource() {
+  const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
   const [isError, setIsError] = useState(false);
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
 
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors }
   } = useForm<FormData>();
 
@@ -69,20 +70,19 @@ export default function AddResource() {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      // In a real app, you would send this data to your backend
-      console.log('Form submitted:', {
+      // Create new resource object
+      const newResource = {
         ...data,
-        languagesSpoken: selectedLanguages
-      });
+        languagesSpoken: selectedLanguages,
+        id: Date.now(), // Use timestamp as temporary ID
+        location: `${data.address}, ${data.city}, ${data.state} ${data.zipCode}`.replace(/, , /g, ', ').replace(/, $/, '')
+      };
       
-      setIsSuccess(true);
-      reset();
-      setSelectedLanguages([]);
+      console.log('Created new resource with ID:', newResource.id);
+      console.log('Resource data:', JSON.stringify(newResource, null, 2));
       
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        setIsSuccess(false);
-      }, 5000);
+      // Redirect to Resources page with the new resource in state
+      navigate('/resources', { state: { newResource } });
     } catch (error) {
       console.error('Error submitting form:', error);
       setIsError(true);
@@ -109,21 +109,6 @@ export default function AddResource() {
               Help us expand our community resource directory by submitting information about an organization or service.
             </p>
           </div>
-
-          {isSuccess && (
-            <div className="bg-green-50 border-l-4 border-green-400 p-4 m-4 rounded">
-              <div className="flex">
-                <div className="flex-shrink-0">
-                  <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
-                </div>
-                <div className="ml-3">
-                  <p className="text-sm text-green-700">
-                    Thank you! Your resource has been submitted and is pending review.
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
 
           {isError && (
             <div className="bg-red-50 border-l-4 border-red-400 p-4 m-4 rounded">

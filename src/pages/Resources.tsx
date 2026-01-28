@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { MagnifyingGlassIcon, FunnelIcon, XMarkIcon } from '@heroicons/react/24/outline';
 
 type Resource = {
@@ -163,14 +164,86 @@ const mockResources: Resource[] = [
 ];
 
 export default function Resources() {
+  const location = useLocation();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
   const [filters, setFilters] = useState<string[]>([]);
   const [showFilters, setShowFilters] = useState(false);
+  const [allResources, setAllResources] = useState<Resource[]>(mockResources);
 
-  const allTags = Array.from(new Set(mockResources.flatMap(resource => resource.tags)));
+  // Load new resources from location state only
+  useEffect(() => {
+    console.log('useEffect triggered with location.state:', location.state);
+    
+    // First, load any persisted resources from sessionStorage
+    const persistedResources = sessionStorage.getItem('addedResources');
+    let baseResources = mockResources;
+    if (persistedResources) {
+      try {
+        const parsed = JSON.parse(persistedResources);
+        baseResources = [...mockResources, ...parsed];
+        console.log('Loaded persisted resources:', parsed.length);
+      } catch (e) {
+        console.error('Error parsing persisted resources:', e);
+      }
+    }
+    
+    // Only check location state for new resource
+    if (location.state?.newResource) {
+      const resourceId = location.state.newResource.id;
+      console.log('Processing new resource with ID:', resourceId);
+      
+      // Check if this specific resource is already in the base resources
+      const resourceExists = baseResources.some(resource => resource.id === resourceId);
+      console.log('Resource already exists:', resourceExists);
+      
+      if (!resourceExists) {
+        // Convert the resource to match Resource type
+        const convertedResource = {
+          id: resourceId,
+          name: location.state.newResource.organizationName || 'Unknown Organization',
+          category: location.state.newResource.category || 'Other',
+          description: location.state.newResource.description || 'No description available.',
+          location: location.state.newResource.location || 'Location not specified',
+          phone: location.state.newResource.phone || 'Not provided',
+          email: location.state.newResource.email || 'Not provided',
+          website: location.state.newResource.website ? 
+            location.state.newResource.website.replace(/^https?:\/\//, '') : '',
+          tags: location.state.newResource.tags ? 
+            location.state.newResource.tags.split(',').map((tag: string) => tag.trim()).filter((tag: string) => tag) : 
+            ['general']
+        };
+        
+        console.log('Adding converted resource:', convertedResource);
+        
+        // Add to base resources and persist
+        const newResources = [...baseResources, convertedResource];
+        const newAddedResources = newResources.slice(mockResources.length); // Only store the added ones
+        
+        // Persist to sessionStorage
+        sessionStorage.setItem('addedResources', JSON.stringify(newAddedResources));
+        
+        // Update state
+        setAllResources(newResources);
+        
+        console.log('New resources count after adding:', newResources.length);
+        
+        // Clear the location state to prevent duplicate additions
+        console.log('Clearing location state');
+        window.history.replaceState({}, document.title, window.location.pathname);
+      } else {
+        // Just set the base resources if no new resource
+        setAllResources(baseResources);
+      }
+    } else {
+      // Just set the base resources if no new resource
+      setAllResources(baseResources);
+    }
+  }, [location.state]);
 
-  const filteredResources = mockResources.filter(resource => {
+  const allTags = Array.from(new Set(allResources.flatMap(resource => resource.tags)));
+
+  const filteredResources = allResources.filter(resource => {
     const matchesSearch = resource.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       resource.description.toLowerCase().includes(searchTerm.toLowerCase());
     
