@@ -72,61 +72,65 @@ const Home = () => {
       {/* Hero Section */}
       <div className="bg-blue-600 text-white">
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-          <div className="lg:grid lg:grid-cols-2 lg:gap-8 items-center">
-            <div>
-              <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-                Connecting Our Community
-              </h1>
-              <p className="mt-6 text-xl text-blue-100 max-w-3xl">
-                Find local resources, support services, and community programs all in one place.
-              </p>
-              <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                <Link
-                  to="/resources"
-                  className="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-white hover:bg-blue-50 md:py-4 md:text-lg md:px-10"
-                >
-                  Explore Resources
-                </Link>
-                <Link
-                  to="/add-resource"
-                  className="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-700 hover:bg-blue-800 md:py-4 md:text-lg md:px-10"
-                >
-                  Add a Resource
-                </Link>
-              </div>
-            </div>
-            <div className="mt-12 lg:mt-0">
-              <div className="bg-white rounded-lg shadow-xl overflow-hidden max-w-md mx-auto lg:mx-0">
-                <div className="p-6">
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">Upcoming Community Events</h3>
-                  <div className="space-y-4">
-                    {events.slice(0, 3).map((event) => {
-                      const locationParts = event.location.split(',');
-                      const shortLocation = locationParts.length > 1 
-                        ? locationParts[locationParts.length - 1].trim()
-                        : event.location;
-                      return (
-                        <div key={event.id} className="flex items-start">
-                          <div className="flex-shrink-0 bg-blue-100 rounded-md p-2">
-                            <CalendarDaysIcon className="h-5 w-5 text-blue-600" />
-                          </div>
-                          <div className="ml-4">
-                            <p className="text-sm font-medium text-gray-900">{event.title}</p>
-                            <div className="flex items-center text-sm text-gray-500">
-                              <CalendarDaysIcon className="flex-shrink-0 mr-1.5 h-4 w-4 text-gray-400" />
-                              {formatDateShort(event.date)}
-                              <MapPinIcon className="ml-3 flex-shrink-0 mr-1.5 h-4 w-4 text-gray-400" />
-                              {shortLocation}
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <div className="mt-6">
-                    <Link to="/events" className="text-sm font-medium text-blue-600 hover:text-blue-500">
-                      View all events <span aria-hidden="true">&rarr;</span>
+          <div className="flex justify-center">
+            <div className="w-full max-w-6xl">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div className="text-center lg:text-left">
+                  <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+                    Connecting Our Community
+                  </h1>
+                  <p className="mt-6 text-xl text-blue-100 max-w-3xl mx-auto lg:mx-0">
+                    Find local resources, support services, and community programs all in one place.
+                  </p>
+                  <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <Link
+                      to="/resources"
+                      className="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-white hover:bg-blue-50 md:py-4 md:text-lg md:px-10"
+                    >
+                      Explore Resources
                     </Link>
+                    <Link
+                      to="/add-resource"
+                      className="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-700 hover:bg-blue-800 md:py-4 md:text-lg md:px-10"
+                    >
+                      Add a Resource
+                    </Link>
+                  </div>
+                </div>
+                <div className="mt-12 lg:mt-0">
+                  <div className="bg-white rounded-lg shadow-xl overflow-hidden max-w-md mx-auto">
+                    <div className="p-6">
+                      <h3 className="text-lg font-medium text-gray-900 mb-4">Upcoming Community Events</h3>
+                      <div className="space-y-4">
+                        {events.slice(0, 3).map((event) => {
+                          const locationParts = event.location.split(',');
+                          const shortLocation = locationParts.length > 1 
+                            ? locationParts[locationParts.length - 1].trim()
+                            : event.location;
+                          return (
+                            <div key={event.id} className="flex items-start">
+                              <div className="flex-shrink-0 bg-blue-100 rounded-md p-2">
+                                <CalendarDaysIcon className="h-5 w-5 text-blue-600" />
+                              </div>
+                              <div className="ml-4">
+                                <p className="text-sm font-medium text-gray-900">{event.title}</p>
+                                <div className="flex items-center text-sm text-gray-500">
+                                  <CalendarDaysIcon className="flex-shrink-0 mr-1.5 h-4 w-4 text-gray-400" />
+                                  {formatDateShort(event.date)}
+                                  <MapPinIcon className="ml-3 flex-shrink-0 mr-1.5 h-4 w-4 text-gray-400" />
+                                  {shortLocation}
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <div className="mt-6">
+                        <Link to="/events" className="text-sm font-medium text-blue-600 hover:text-blue-500">
+                          View all events <span aria-hidden="true">&rarr;</span>
+                        </Link>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -138,144 +142,156 @@ const Home = () => {
       {/* Featured Resources */}
       <div className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-              Featured Community Resources
-            </h2>
-            <p className="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
-              Discover essential services and support available in our community
-            </p>
-          </div>
+          <div className="flex justify-center">
+            <div className="w-full max-w-6xl">
+              <div className="text-center">
+                <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                  Featured Community Resources
+                </h2>
+                <p className="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+                  Discover essential services and support available in our community
+                </p>
+              </div>
 
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
-            {featuredResources.map((resource, index) => (
-              <ResourceCard
-                key={index}
-                title={resource.title}
-                description={resource.description}
-                category={resource.category}
-                icon={resource.icon}
-              />
-            ))}
+              <div className="mt-12 grid gap-8 md:grid-cols-3">
+                {featuredResources.map((resource, index) => (
+                  <ResourceCard
+                    key={index}
+                    title={resource.title}
+                    description={resource.description}
+                    category={resource.category}
+                    icon={resource.icon}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Featured Events */}
-      <div className="bg-white py-12">
+      <div className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="lg:text-center mb-8">
-            <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-              Upcoming Events
-            </h2>
-            <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-              Join community workshops, support groups, and resource fairs
-            </p>
-          </div>
+          <div className="flex justify-center">
+            <div className="w-full max-w-6xl">
+              <div className="text-center mb-8">
+                <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                  Upcoming Events
+                </h2>
+                <p className="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+                  Join community workshops, support groups, and resource fairs
+                </p>
+              </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {events.slice(0, 3).map((event) => {
-              const getCategoryColor = (category: string) => {
-                const colors: { [key: string]: string } = {
-                  'Resource Fair': 'bg-blue-100 text-blue-800',
-                  'Workshop': 'bg-green-100 text-green-800',
-                  'Food Distribution': 'bg-orange-100 text-orange-800',
-                  'Job Fair': 'bg-purple-100 text-purple-800',
-                  'Health': 'bg-red-100 text-red-800'
-                };
-                return colors[category] || 'bg-gray-100 text-gray-800';
-              };
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {events.slice(0, 3).map((event) => {
+                  const getCategoryColor = (category: string) => {
+                    const colors: { [key: string]: string } = {
+                      'Resource Fair': 'bg-blue-100 text-blue-800',
+                      'Workshop': 'bg-green-100 text-green-800',
+                      'Food Distribution': 'bg-orange-100 text-orange-800',
+                      'Job Fair': 'bg-purple-100 text-purple-800',
+                      'Health': 'bg-red-100 text-red-800'
+                    };
+                    return colors[category] || 'bg-gray-100 text-gray-800';
+                  };
 
-              return (
-                <div key={event.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                  <div className="h-32">
-                    <img
-                      src={event.image}
-                      alt={event.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className={`px-2 py-1 text-xs font-medium rounded-full ${getCategoryColor(event.category)}`}>
-                        {event.category}
-                      </span>
-                      <span className="text-xs text-gray-500">{formatDateShort(event.date)}</span>
+                  return (
+                    <div key={event.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                      <div className="h-32">
+                        <img
+                          src={event.image}
+                          alt={event.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="p-4">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className={`px-2 py-1 text-xs font-medium rounded-full ${getCategoryColor(event.category)}`}>
+                            {event.category}
+                          </span>
+                          <span className="text-xs text-gray-500">{formatDateShort(event.date)}</span>
+                        </div>
+                        <h3 className="text-lg font-medium text-gray-900 mb-1">{event.title}</h3>
+                        <p className="text-sm text-gray-600 mb-2">{event.time}</p>
+                        <p className="text-sm text-gray-500 mb-3">{event.location}</p>
+                        <a
+                          href={event.registrationLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center"
+                        >
+                          Register Now <ArrowRightIcon className="ml-1 h-4 w-4" />
+                        </a>
+                      </div>
                     </div>
-                    <h3 className="text-lg font-medium text-gray-900 mb-1">{event.title}</h3>
-                    <p className="text-sm text-gray-600 mb-2">{event.time}</p>
-                    <p className="text-sm text-gray-500 mb-3">{event.location}</p>
-                    <a
-                      href={event.registrationLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center"
-                    >
-                      Register Now <ArrowRightIcon className="ml-1 h-4 w-4" />
-                    </a>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+                  );
+                })}
+              </div>
 
-          <div className="text-center mt-8">
-            <Link
-              to="/events"
-              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
-            >
-              View All Events
-              <ArrowRightIcon className="ml-2 h-5 w-5" />
-            </Link>
+              <div className="text-center mt-8">
+                <Link
+                  to="/events"
+                  className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+                >
+                  View All Events
+                  <ArrowRightIcon className="ml-2 h-5 w-5" />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       {/* How It Works */}
-      <div className="bg-gray-50 py-12">
+      <div className="py-12 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="lg:text-center">
-            <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-              How It Works
-            </h2>
-            <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-              Getting help or contributing to our community has never been easier
-            </p>
-          </div>
+          <div className="flex justify-center">
+            <div className="w-full max-w-6xl">
+              <div className="text-center">
+                <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                  How It Works
+                </h2>
+                <p className="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+                  Getting help or contributing to our community has never been easier
+                </p>
+              </div>
 
-          <div className="mt-10">
-            <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
-              {[
-                {
-                  name: 'Find Resources',
-                  description: 'Search our comprehensive directory of community resources and services.',
-                  icon: MagnifyingGlassIcon,
-                },
-                {
-                  name: 'Get Connected',
-                  description: 'Reach out to service providers and organizations that can help.',
-                  icon: UsersIcon,
-                },
-                {
-                  name: 'Contribute',
-                  description: 'Know a resource we should add? Submit it to help others in the community.',
-                  icon: PlusCircleIcon,
-                },
-              ].map((step) => (
-                <div key={step.name} className="flex">
-                  <div className="flex-shrink-0">
-                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
-                      <step.icon className="h-6 w-6" />
+              <div className="mt-10">
+                <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+                  {[
+                    {
+                      name: 'Find Resources',
+                      description: 'Search our comprehensive directory of community resources and services.',
+                      icon: MagnifyingGlassIcon,
+                    },
+                    {
+                      name: 'Get Connected',
+                      description: 'Reach out to service providers and organizations that can help.',
+                      icon: UsersIcon,
+                    },
+                    {
+                      name: 'Contribute',
+                      description: 'Know a resource we should add? Submit it to help others in the community.',
+                      icon: PlusCircleIcon,
+                    },
+                  ].map((step) => (
+                    <div key={step.name} className="flex">
+                      <div className="flex-shrink-0">
+                        <div className="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
+                          <step.icon className="h-6 w-6" />
+                        </div>
+                      </div>
+                      <div className="ml-4">
+                        <h3 className="text-lg leading-6 font-medium text-gray-900">{step.name}</h3>
+                        <p className="mt-2 text-base text-gray-500">
+                          {step.description}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="ml-4">
-                    <h3 className="text-lg leading-6 font-medium text-gray-900">{step.name}</h3>
-                    <p className="mt-2 text-base text-gray-500">
-                      {step.description}
-                    </p>
-                  </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </div>
