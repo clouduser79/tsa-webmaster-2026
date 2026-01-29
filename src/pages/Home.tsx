@@ -72,8 +72,8 @@ const Home = () => {
       {/* Hero Section */}
       <div className="bg-blue-600 text-white">
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-center">
-            <div className="w-full max-w-6xl">
+          <div className="flex justify-center lg:justify-start">
+            <div className="w-full max-w-6xl lg:ml-16">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                 <div className="text-center lg:text-left">
                   <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
