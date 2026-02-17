@@ -157,8 +157,8 @@ We welcome contributions from community members! Here's how you can help:
 ## Contact
 
 For questions, suggestions, or support:
-- **Project Maintainer**: clouduser79
-- **Email**: swastikmankotia9@gmail.com
+- **Project Maintainer**: Shawn Mankotia
+- **Email**: shawnmankotia79@gmail.com
 - **GitHub Issues**: [Create an issue](https://github.com/clouduser79/tsa-webmaster-2026/issues)
 
 ## License
