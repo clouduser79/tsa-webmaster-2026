@@ -11,15 +11,23 @@ import Navbar from './components/Navbar';
 function App() {
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Navigation bar that appears on all pages */}
       <Navbar />
+      {/* Main content area that contains the routed pages */}
       <div className="w-full">
         <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/resources" element={<Resources />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/add-resource" element={<AddResource />} />
+          {/* Home page - default route */}
+          <Route path="/" element={<Home />} />
+          {/* About page with mission and values */}
+          <Route path="/about" element={<About />} />
+          {/* Contact page (currently basic placeholder) */}
+          <Route path="/contact" element={<Contact />} />
+          {/* Resources page - browse and search community resources */}
+          <Route path="/resources" element={<Resources />} />
+          {/* Events page - browse community events */}
+          <Route path="/events" element={<Events />} />
+          {/* Add Resource page - form to submit new resources */}
+          <Route path="/add-resource" element={<AddResource />} />
       </Routes>
       </div>
     </div>

@@ -4,50 +4,50 @@ import { useNavigate } from 'react-router-dom';
 import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
 
 type FormData = {
-  organizationName: string;
-  category: string;
-  description: string;
-  contactName: string;
-  email: string;
-  phone: string;
-  website: string;
-  address: string;
-  city: string;
-  state: string;
-  zipCode: string;
-  eligibilityRequirements: string;
-  hoursOfOperation: string;
-  languagesSpoken: string[];
-  tags: string;
-  additionalInfo: string;
-  isVerified: boolean;
+  organizationName: string;    // Name of the organization or service
+  category: string;            // Resource category (Healthcare, Housing, etc.)
+  description: string;         // Detailed description of services
+  contactName: string;         // Name of contact person (optional)
+  email: string;              // Contact email address
+  phone: string;              // Contact phone number
+  website: string;            // Organization website
+  address: string;            // Street address
+  city: string;               // City
+  state: string;              // State abbreviation
+  zipCode: string;            // ZIP code
+  eligibilityRequirements: string; // Who can access this service
+  hoursOfOperation: string;   // When the service is available
+  languagesSpoken: string[];  // Languages spoken by staff
+  tags: string;               // Comma-separated tags for search
+  additionalInfo: string;     // Any extra helpful information
+  isVerified: boolean;        // User verification of accuracy
 };
 
 const categories = [
-  'Basic Needs',
-  'Healthcare',
-  'Housing',
-  'Employment',
-  'Education',
-  'Legal',
-  'Family & Children',
-  'Seniors',
-  'Veterans',
-  'Immigrants & Refugees',
-  'Other'
+  'Basic Needs',           // Food, shelter, clothing
+  'Healthcare',            // Medical, dental, mental health
+  'Housing',               // Emergency shelter, rental assistance
+  'Employment',            // Job training, career services
+  'Education',             // Tutoring, GED, adult education
+  'Legal',                 // Legal aid, court assistance
+  'Family & Children',     // Childcare, family services
+  'Seniors',               // Services for elderly
+  'Veterans',              // Veteran-specific services
+  'Immigrants & Refugees', // Immigration assistance
+  'Other'                  // Catch-all for other categories
 ];
 
 const languages = [
-  'English',
-  'Spanish',
-  'Mandarin',
-  'Vietnamese',
-  'Arabic',
-  'French',
-  'Tagalog',
-  'Korean',
-  'Russian',
-  'Other'
+  'English',    
+  'Spanish',    
+  'Mandarin',   
+  'Vietnamese', 
+  'Arabic',     
+  'French',     
+  'Tagalog',    
+  'Korean',     
+  'Russian',    
+  'Other'       
 ];
 
 export default function AddResource() {
@@ -57,45 +57,51 @@ export default function AddResource() {
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
 
   const {
-    register,
-    handleSubmit,
-    formState: { errors }
+    register,           // Register form inputs
+    handleSubmit,        // Handle form submission
+    formState: { errors } // Form validation errors
   } = useForm<FormData>();
 
+  // Handle form submission
   const onSubmit = async (data: FormData) => {
     try {
+      // Show loading state
       setIsSubmitting(true);
+      // Clear any previous errors
       setIsError(false);
       
-      // Simulate API call
+      // Simulate API call delay for better UX
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      // Create new resource object
+      // Create new resource object with form data
       const newResource = {
         ...data,
         languagesSpoken: selectedLanguages,
-        id: Date.now(), // Use timestamp as temporary ID
+        id: Date.now(), // Use timestamp as temporary unique ID
+        // Combine address fields into single location string
         location: `${data.address}, ${data.city}, ${data.state} ${data.zipCode}`.replace(/, , /g, ', ').replace(/, $/, '')
       };
       
       console.log('Created new resource with ID:', newResource.id);
       console.log('Resource data:', JSON.stringify(newResource, null, 2));
       
-      // Redirect to Resources page with the new resource in state
+      // Redirect to Resources page with the new resource in navigation state
       navigate('/resources', { state: { newResource } });
     } catch (error) {
       console.error('Error submitting form:', error);
       setIsError(true);
     } finally {
+      // Always hide loading state
       setIsSubmitting(false);
     }
   };
 
+  // Toggle language selection for multi-select functionality
   const toggleLanguage = (language: string) => {
     setSelectedLanguages(prev =>
       prev.includes(language)
-        ? prev.filter(lang => lang !== language)
-        : [...prev, language]
+        ? prev.filter(lang => lang !== language) // Remove if already selected
+        : [...prev, language] // Add if not selected
     );
   };
 

@@ -1,24 +1,24 @@
 export interface Event {
-  id: number;
-  title: string;
-  description: string;
-  date: string;
-  time: string;
-  location: string;
-  category: string;
-  organizer: string;
-  attendees: number;
-  maxAttendees: number;
-  image: string;
-  isVirtual: boolean;
-  registrationLink: string;
+  id: number;                    // Unique identifier for the event
+  title: string;                  // Event name/title
+  description: string;            // Detailed description of the event
+  date: string;                   // Event date in YYYY-MM-DD format
+  time: string;                   // Event time (e.g., "10:00 AM - 3:00 PM")
+  location: string;                // Physical or virtual location
+  category: string;                // Event category (Workshop, Job Fair, etc.)
+  organizer: string;               // Organization hosting the event
+  attendees: number;               // Current number of registered attendees
+  maxAttendees: number;            // Maximum capacity for the event
+  image: string;                   // URL to event image
+  isVirtual: boolean;              // Whether the event is online/virtual
+  registrationLink: string;        // URL for event registration
 }
 
-// Generate random image URL
 export const getRandomImage = (seed: number) => {
   return `https://picsum.photos/seed/${seed}/400/300`;
 };
 
+// Primary events that will be displayed on the Events page
 export const initialEvents: Event[] = [
   {
     id: 1,
@@ -112,7 +112,7 @@ export const initialEvents: Event[] = [
   }
 ];
 
-// Backup events for replacement
+// Backup events that can replace outdated initial events
 export const backupEvents: Event[] = [
   {
     id: 7,
@@ -251,7 +251,8 @@ export const backupEvents: Event[] = [
   }
 ];
 
-// Utility function to get filtered events (future events with backup replacement)
+
+// Replaces outdated events with backup events
 export const getFilteredEvents = (): Event[] => {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -259,23 +260,19 @@ export const getFilteredEvents = (): Event[] => {
   const validEvents: Event[] = [];
   const usedBackupIndices = new Set<number>();
 
-  // Process initial events
   for (const event of initialEvents) {
     const eventDate = new Date(event.date);
     eventDate.setHours(0, 0, 0, 0);
     
     if (eventDate >= today) {
-      // Event is still in the future, keep it
       validEvents.push(event);
     } else {
-      // Event is outdated, find a replacement from backup events
       for (let i = 0; i < backupEvents.length; i++) {
         if (!usedBackupIndices.has(i)) {
           const backupEvent = backupEvents[i];
           const backupDate = new Date(backupEvent.date);
           backupDate.setHours(0, 0, 0, 0);
           
-          // Only use backup if it's in the future
           if (backupDate >= today) {
             validEvents.push(backupEvent);
             usedBackupIndices.add(i);
@@ -283,11 +280,9 @@ export const getFilteredEvents = (): Event[] => {
           }
         }
       }
-      // If no valid backup found, skip this event (don't show outdated events)
     }
   }
 
-  // Add any remaining unused backup events that are in the future
   for (let i = 0; i < backupEvents.length; i++) {
     if (!usedBackupIndices.has(i)) {
       const backupEvent = backupEvents[i];
@@ -301,7 +296,6 @@ export const getFilteredEvents = (): Event[] => {
     }
   }
 
-  // Sort events by date (earliest first)
   return validEvents.sort((a, b) => {
     const dateA = new Date(a.date).getTime();
     const dateB = new Date(b.date).getTime();
@@ -309,7 +303,7 @@ export const getFilteredEvents = (): Event[] => {
   });
 };
 
-// Format date helper
+// Returns full date format with day of the week
 export const formatDate = (dateString: string) => {
   const date = new Date(dateString);
   return date.toLocaleDateString('en-US', { 
@@ -320,7 +314,7 @@ export const formatDate = (dateString: string) => {
   });
 };
 
-// Format date short helper (for Home page)
+// Returns abbreviated date format for compact display
 export const formatDateShort = (dateString: string) => {
   const date = new Date(dateString);
   return date.toLocaleDateString('en-US', { 

@@ -1,12 +1,12 @@
 import { useState, useMemo } from 'react';
 import {
-  CalendarDaysIcon,
-  MapPinIcon,
-  ClockIcon,
-  UserGroupIcon,
-  ArrowRightIcon,
-  MagnifyingGlassIcon,
-  FunnelIcon
+  CalendarDaysIcon,     // Event calendar icon
+  MapPinIcon,           // Location pin icon
+  ClockIcon,             // Time/clock icon
+  UserGroupIcon,         // Attendees icon
+  ArrowRightIcon,         // Navigation arrow
+  MagnifyingGlassIcon,    // Search icon
+  FunnelIcon             // Filter icon
 } from '@heroicons/react/24/outline';
 import { getFilteredEvents, formatDate } from '../data/eventsData';
 
@@ -39,7 +39,7 @@ const Events = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
+      {/* Header section with title and description */}
       <div className="bg-blue-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center">
@@ -53,10 +53,11 @@ const Events = () => {
         </div>
       </div>
 
-      {/* Search and Filter */}
+      {/* Search and Filter section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="bg-white rounded-lg shadow-md p-6">
           <div className="flex flex-col md:flex-row gap-4">
+            {/* Search input field */}
             <div className="flex-1">
               <div className="relative">
                 <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -69,6 +70,8 @@ const Events = () => {
                 />
               </div>
             </div>
+            
+            {/* Category filter dropdown */}
             <div className="flex items-center gap-2">
               <FunnelIcon className="h-5 w-5 text-gray-400" />
               <select
@@ -87,22 +90,26 @@ const Events = () => {
         </div>
       </div>
 
-      {/* Events Grid */}
+      {/* Events Grid - displays filtered events */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredEvents.map(event => (
+            // Individual event card
             <div key={event.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+              {/* Event image with category badge */}
               <div className="relative h-48">
                 <img
                   src={event.image}
                   alt={event.title}
                   className="w-full h-full object-cover"
                 />
+                {/* Category badge in top-right corner */}
                 <div className="absolute top-4 right-4">
                   <span className={`px-3 py-1 text-xs font-medium rounded-full ${getCategoryColor(event.category)}`}>
                     {event.category}
                   </span>
                 </div>
+                {/* Virtual event badge (if applicable) */}
                 {event.isVirtual && (
                   <div className="absolute top-4 left-4">
                     <span className="px-3 py-1 text-xs font-medium rounded-full bg-purple-100 text-purple-800">
@@ -111,10 +118,13 @@ const Events = () => {
                   </div>
                 )}
               </div>
+              
+              {/* Event details section */}
               <div className="p-6">
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">{event.title}</h3>
                 <p className="text-gray-600 mb-4 line-clamp-2">{event.description}</p>
                 
+                {/* Event metadata */}
                 <div className="space-y-2 mb-4">
                   <div className="flex items-center text-sm text-gray-500">
                     <CalendarDaysIcon className="h-4 w-4 mr-2" />
@@ -134,12 +144,14 @@ const Events = () => {
                   </div>
                 </div>
 
+                {/* Event organizer and registration */}
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-500">
                     Organized by {event.organizer}
                   </span>
                 </div>
 
+                {/* Registration button */}
                 <a
                   href={event.registrationLink}
                   target="_blank"
@@ -152,17 +164,18 @@ const Events = () => {
               </div>
             </div>
           ))}
-        </div>
 
-        {filteredEvents.length === 0 && (
-          <div className="text-center py-12">
-            <CalendarDaysIcon className="mx-auto h-12 w-12 text-gray-400" />
-            <h3 className="mt-2 text-lg font-medium text-gray-900">No events found</h3>
-            <p className="mt-1 text-gray-500">
-              Try adjusting your search or filter criteria
-            </p>
-          </div>
-        )}
+          {/* Empty state when no events match filters */}
+          {filteredEvents.length === 0 && (
+            <div className="text-center py-12">
+              <CalendarDaysIcon className="mx-auto h-12 w-12 text-gray-400" />
+              <h3 className="mt-2 text-lg font-medium text-gray-900">No events found</h3>
+              <p className="mt-1 text-gray-500">
+                Try adjusting your search or filter criteria
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

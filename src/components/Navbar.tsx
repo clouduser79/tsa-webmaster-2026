@@ -1,14 +1,16 @@
 import { Link } from 'react-router-dom';
 import { 
-  HomeIcon, 
-  InformationCircleIcon, 
-  PlusCircleIcon, 
-  MagnifyingGlassIcon
+  HomeIcon,              // Home page icon
+  InformationCircleIcon,  // About page icon
+  PlusCircleIcon,        // Add resource page icon
+  MagnifyingGlassIcon    // Resources search page icon
 } from '@heroicons/react/24/outline';
 import communityLogo from '../assets/community-logo.svg';
 
+// Main navigation component that appears on all pages
 export default function Navbar() {
   return (
+    // Navigation bar with blue background and white text
     <nav className="bg-blue-600 text-white shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative flex h-16">
